@@ -1,8 +1,10 @@
 # Flash Loan Triangular Arbitrage
 - It is easier to use Alchemy, Hardhat and EtherJS for development.
-- Hardhat is equivalent to Truffle
+
 
 ## Intro
+
+### Reading Smart Contract Data
 - To read pancakseswap data in BSC from contract:
   - Install relevant JS modules like EtherJS with `npm init` and `npm install`
   - Setup the `provider`. The provider can be any BSC JSON RPC. the JsonRpcProvider used in this tutorial is `"https://bsc-dataseed.binance.org/"` 
@@ -26,6 +28,15 @@
   - Refer to `/public/pancake` for code on how to read PancakeSwap v2.
   - Refer to `/public/uniswapv2` for code on how to read Uniswap v2.
   - Refer to `/public/uniswapv3` for code on how to read Uniswap v3.
+
+## Testing with Hardhat
+- Hardhat is equivalent to Truffle
+- Real value proposition is to allow for interaction with a fork of mainnet for testing
+- `npx hardhat node --fork https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}` to launch a testnet
+- `const [ownerSigner] = await ethers.getSigners();` gets a list of testnet accounts.
+- `npx hardhat test` to run hardhat testing
+- Refer to `/public/hardhatTest` for code for testing.
+- Refer to `utils` and `test` folder and `sample-script.js`
 
 ## Setup
 - run code below to install

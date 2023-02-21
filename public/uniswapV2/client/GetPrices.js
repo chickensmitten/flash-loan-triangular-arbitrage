@@ -11,7 +11,7 @@ const { erc20ABI, factoryABI, pairABI, routerABI } = require("./AbiList");
 
 // Standard Provider
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://eth-mainnet.alchemyapi.io/v2/cQ2Bb9ZudvJZUA0TjgzVYUOHfgrkYpa8"
+  `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`
 );
 
 // Connect to Factory

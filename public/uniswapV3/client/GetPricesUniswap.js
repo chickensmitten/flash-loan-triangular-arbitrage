@@ -8,7 +8,7 @@ const {
 } = require("@uniswap/v3-periphery/artifacts/contracts/lens/Quoter.sol/Quoter.json");
 
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://eth-mainnet.alchemyapi.io/v2/cQ2Bb9ZudvJZUA0TjgzVYUOHfgrkYpa8"
+  `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`
 );
 
 async function getPrice(addressFrom, addressTo, amountInHuman) {

@@ -1,17 +1,26 @@
-# Flash Loan
+# Flash Loan Triangular Arbitrage
+- It is easier to use Alchemy, Hardhat and EtherJS for development.
+
 ## Intro
-- To read data from contract:
-  - Install relevant JS modules like EtherJS
+- To read pancakseswap data in BSC from contract:
+  - Install relevant JS modules like EtherJS with `npm init` and `npm install`
   - Setup the `provider`. The provider can be any BSC JSON RPC. the JsonRpcProvider used in this tutorial is `"https://bsc-dataseed.binance.org/"` 
   - Get relevant contract addresses:
-    - addressFactory. Pancake Swap Factory address enables the right pricing contract etc to find the right pairs. Refer to [this](https://docs.pancakeswap.finance/code/smart-contracts/pancakeswap-exchange/v2/factory-v2). Tutorial requires it, but the code is effectively unused.
+    - addressFactory. Pancake Swap Factory address refers to the address of the facotry smart contracts that creates the token contract and liquidity pool. Refer to [this](https://docs.pancakeswap.finance/code/smart-contracts/pancakeswap-exchange/v2/factory-v2). Tutorial requires it, but the code is effectively unused.
     - addressRouter. Pancake Swap Router address provides the prices. Refer to [this](https://docs.pancakeswap.finance/code/smart-contracts/pancakeswap-exchange/v2/router-v2) 
     - addressFrom. Is the address of a token like BUSD
     - addressTo. Is the address of another token like WBNB
   - Get ABI Variables i.e. `"function getPair(address tokenA, address tokenB) external view returns (address pair)",`
   - In the contract Router, put amount in then get amount out. Parse them to ensure human readible decimals.
   - Then run code `node public/pancake/client/GetPrices.js` to get results
-
+- Reading data from uniswapv2 is very similar to pancake
+- To read uniswapV3 from contract:
+  - `npm i --save-dev @uniswap/v3-sdk @uniswap/sdk-core`
+  - Get provider JSON RPC
+  - Get [quoter address](https://docs.uniswap.org/contracts/v3/reference/deployments)
+  - Pull price information with `quoteExactInputSingle`
+- For LiquidityPool details in uniswapV3, refer to `public/uniswapV3/client/pool.js` and `public/uniswapV3/client/factory.js`
+- `getPool` basically returns the liquidity pool based on the token addresses and factory addresses.
 - For more information:
   - Refer to `/public/pancake` for code on how to read PancakeSwap v2.
   - Refer to `/public/uniswapv2` for code on how to read Uniswap v2.

@@ -6,7 +6,7 @@ const {
 } = require("@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json");
 
 const provider = new ethers.providers.JsonRpcProvider(
-  "https://eth-mainnet.alchemyapi.io/v2/cQ2Bb9ZudvJZUA0TjgzVYUOHfgrkYpa8"
+  `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`
 );
 
 const poolAddress = "0x8ad599c3A0ff1De082011EFDDc58f1908eb6e6D8";

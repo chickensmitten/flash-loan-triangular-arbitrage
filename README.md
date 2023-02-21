@@ -1,5 +1,6 @@
 # Flash Loan Triangular Arbitrage
 - It is easier to use Alchemy, Hardhat and EtherJS for development.
+- Hardhat is equivalent to Truffle
 
 ## Intro
 - To read pancakseswap data in BSC from contract:

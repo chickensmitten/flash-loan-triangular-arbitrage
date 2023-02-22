@@ -60,3 +60,15 @@ function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldat
 - For flash loan code, refer to: `utilities`, `libraries`, `interfaces`, `hardhat.config.js`, `FlashTri.sol` and `/scripts/deploy.js`
 - Old Resources: `public/flashloan/pancakeswap` and `public/flashloan/uniswapsushi`. The code here might not work, but concepts remain the same.
 
+## To Do
+- Read up on `calldata` for Solidity. The `.swap` triggers `pancakeCall` as it has `calldata` as explained in [UniswapV2 flash loan article](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/using-flash-swaps)
+```
+// Passing data as bytes so that the 'swap' function knows it is a flashloan
+bytes memory data = abi.encode(_tokenBorrow, _amount, msg.sender);
+
+// Execute the initial swap to get the loan
+IUniswapV2Pair(pair).swap(amount0Out, amount1Out, address(this), data);
+
+// code above triggers
+function pancakeCall( ... , bytes calldata _data ) external { ... }
+```

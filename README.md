@@ -1,8 +1,17 @@
 # Flash Loan Triangular Arbitrage
+- Flashloans are just codes executing loans and trade all in one transaction.
+- This code assumes you have already identified an arbitrage opporunity
 - It is easier to use Alchemy, Hardhat and EtherJS for development.
 
-
-## Intro
+## Setup
+### Quick Guide
+- run code below to install
+```
+npm ci // use this instead of npm install
+npx hardhat test
+```
+- You will likely see a "Arbitrage not profitable" error come up, if the arbitrage is not profitable. This is the most common result and in fact means the code is working.
+- Deploy to mainnet or testnet `npx hardhat run scripts/deploy.js --network testnet`
 
 ### Reading Smart Contract Data
 - To read pancakseswap data in BSC from contract:
@@ -38,10 +47,16 @@
 - Refer to `/public/hardhatTest` for code for testing.
 - Refer to `utils` and `test` folder and `sample-script.js`
 
-## Setup
-- run code below to install
+## Flash loans
+- [Flash swaps with uniswap v2](https://docs.uniswap.org/contracts/v2/guides/smart-contract-integration/using-flash-swaps)
+- Anatomy of a flash loan swap. The code below shows the flash loan swap is similar to conventional swap. The only difference is the `bytes calldata data` callback at the end.
 ```
-npm ci // use this instead of npm install
-npx hardhat test
+function swap(uint amount0Out, uint amount1Out, address to, bytes calldata data);
 ```
-- You will likely see a "Arbitrage not profitable" error come up, if the arbitrage is not profitable. This is the most common result and in fact means the code is working.
+This triggers another callback to another function shown below
+```
+function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data);
+```
+- For flash loan code, refer to: `utilities`, `libraries`, `interfaces`, `hardhat.config.js`, `FlashTri.sol` and `/scripts/deploy.js`
+- Old Resources: `public/flashloan/pancakeswap` and `public/flashloan/uniswapsushi`. The code here might not work, but concepts remain the same.
+
